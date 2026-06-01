@@ -10,8 +10,8 @@ public record CreateBookDto(
     [Range(0, 2100)] int PublishedYear,
     int CategoryId);
 
-public record CategoryDto(int Id, string Name, string? Description);
-public record CreateCategoryDto([Required][MaxLength(100)] string Name, [MaxLength(500)] string? Description);
+public record LibraryCategoryDto(int Id, string Name, string? Description);
+public record CreateLibraryCategoryDto([Required][MaxLength(100)] string Name, [MaxLength(500)] string? Description);
 
 public record MemberDto(int Id, string FullName, string Email, DateTime RegisteredAt);
 public record CreateMemberDto([Required][MaxLength(100)] string FullName, [Required][EmailAddress] string Email);

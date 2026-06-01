@@ -1,4 +1,6 @@
-namespace Domain.Entities;
+namespace Domain.Catalog.Entities;
+
+using Domain.Entities;
 
 public class Category : BaseEntity
 {

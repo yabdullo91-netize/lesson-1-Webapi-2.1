@@ -6,8 +6,8 @@ namespace API.Controllers;
 
 public class CategoriesController : BaseApiController
 {
-    private readonly ICategoryService _service;
-    public CategoriesController(ICategoryService service) => _service = service;
+    private readonly ILibraryCategoryService _service;
+    public CategoriesController(ILibraryCategoryService service) => _service = service;
 
     [HttpGet]
     public async Task<ActionResult> GetAll() => HandleResult(await _service.GetAllAsync());
@@ -16,10 +16,10 @@ public class CategoriesController : BaseApiController
     public async Task<ActionResult> GetById(int id) => HandleResult(await _service.GetByIdAsync(id));
 
     [HttpPost]
-    public async Task<ActionResult> Create(CreateCategoryDto dto) => HandleResult(await _service.CreateAsync(dto));
+    public async Task<ActionResult> Create(CreateLibraryCategoryDto dto) => HandleResult(await _service.CreateAsync(dto));
 
     [HttpPut("{id}")]
-    public async Task<ActionResult> Update(int id, CreateCategoryDto dto) => HandleResult(await _service.UpdateAsync(id, dto));
+    public async Task<ActionResult> Update(int id, CreateLibraryCategoryDto dto) => HandleResult(await _service.UpdateAsync(id, dto));
 
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(int id) => HandleResult(await _service.DeleteAsync(id));

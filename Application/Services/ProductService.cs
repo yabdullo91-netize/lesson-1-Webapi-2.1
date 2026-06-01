@@ -1,7 +1,7 @@
 using Application.Common.Responses;
 using Application.DTOs;
 using Application.Interfaces;
-using Domain.Entities;
+using Domain.Catalog.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Application.Services;

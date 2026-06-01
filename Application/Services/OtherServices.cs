@@ -6,35 +6,35 @@ using Application.Interfaces;
 
 namespace Application.Services;
 
-public class CategoryService : ICategoryService
+public class LibraryCategoryService : ILibraryCategoryService
 {
     private readonly IRepository<Category> _repo;
-    public CategoryService(IRepository<Category> repo) => _repo = repo;
+    public LibraryCategoryService(IRepository<Category> repo) => _repo = repo;
 
-    public async Task<Result<IEnumerable<CategoryDto>>> GetAllAsync()
+    public async Task<Result<IEnumerable<LibraryCategoryDto>>> GetAllAsync()
     {
         var items = await _repo.Query()
-            .Select(c => new CategoryDto(c.Id, c.Name, c.Description))
+            .Select(c => new LibraryCategoryDto(c.Id, c.Name, c.Description))
             .ToListAsync();
-        return Result<IEnumerable<CategoryDto>>.Success(items);
+        return Result<IEnumerable<LibraryCategoryDto>>.Success(items);
     }
 
-    public async Task<Result<CategoryDto>> GetByIdAsync(int id)
+    public async Task<Result<LibraryCategoryDto>> GetByIdAsync(int id)
     {
         var c = await _repo.GetByIdAsync(id);
-        if (c == null) return Result<CategoryDto>.Failure("Категория не найдена");
-        return Result<CategoryDto>.Success(new CategoryDto(c.Id, c.Name, c.Description));
+        if (c == null) return Result<LibraryCategoryDto>.Failure("Категория не найдена");
+        return Result<LibraryCategoryDto>.Success(new LibraryCategoryDto(c.Id, c.Name, c.Description));
     }
 
-    public async Task<Result<CategoryDto>> CreateAsync(CreateCategoryDto dto)
+    public async Task<Result<LibraryCategoryDto>> CreateAsync(CreateLibraryCategoryDto dto)
     {
         var c = new Category { Name = dto.Name, Description = dto.Description };
         await _repo.AddAsync(c);
         await _repo.SaveChangesAsync();
-        return Result<CategoryDto>.Success(new CategoryDto(c.Id, c.Name, c.Description));
+        return Result<LibraryCategoryDto>.Success(new LibraryCategoryDto(c.Id, c.Name, c.Description));
     }
 
-    public async Task<Result<bool>> UpdateAsync(int id, CreateCategoryDto dto)
+    public async Task<Result<bool>> UpdateAsync(int id, CreateLibraryCategoryDto dto)
     {
         var c = await _repo.GetByIdAsync(id);
         if (c == null) return Result<bool>.Failure("Категория не найдена");

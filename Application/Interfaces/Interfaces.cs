@@ -27,12 +27,12 @@ public interface IBookService
     Task<Result<BookDetailsDto>> GetDetailsAsync(int id);
 }
 
-public interface ICategoryService
+public interface ILibraryCategoryService
 {
-    Task<Result<IEnumerable<CategoryDto>>> GetAllAsync();
-    Task<Result<CategoryDto>> GetByIdAsync(int id);
-    Task<Result<CategoryDto>> CreateAsync(CreateCategoryDto dto);
-    Task<Result<bool>> UpdateAsync(int id, CreateCategoryDto dto);
+    Task<Result<IEnumerable<LibraryCategoryDto>>> GetAllAsync();
+    Task<Result<LibraryCategoryDto>> GetByIdAsync(int id);
+    Task<Result<LibraryCategoryDto>> CreateAsync(CreateLibraryCategoryDto dto);
+    Task<Result<bool>> UpdateAsync(int id, CreateLibraryCategoryDto dto);
     Task<Result<bool>> DeleteAsync(int id);
     Task<Result<IEnumerable<CategoryWithBooksDto>>> GetWithBooksAsync();
 }
